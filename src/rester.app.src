@@ -1,0 +1,10 @@
+{application, rester,
+  [{description, "REST library"},
+  {vsn, "0.0.1"},
+  {modules, [ rester_app,
+              rester_sup,
+              rester_endpoint,
+              rester_util ]},
+  {registered, rester_app},
+  {applications, [kernel, stdlib, crypto, hackney ]},
+  {mod, {rester_app, []}}]}.
