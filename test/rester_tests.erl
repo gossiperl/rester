@@ -21,7 +21,7 @@ rester_test_() ->
     fun test_get_custom_header/0 ] }.
 
 start() ->
-  Apps = [ crypto, asn1, public_key, ssl, idna, hackney, jsx, uuid, rester ],
+  Apps = [ crypto, asn1, public_key, ssl, idna, hackney, jsx, rester ],
   [ application:start( App ) || App <- Apps ],
   rester_sup:add_http_endpoint( ?SERVICE_NAME, ?URL ).
 

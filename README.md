@@ -4,7 +4,7 @@ A very simple REST wrapper library built on top of hackney and jsx.
 
 # Running
 
-    Apps = [ crypto, asn1, public_key, ssl, idna, hackney, jsx, uuid, rester ],
+    Apps = [ crypto, asn1, public_key, ssl, idna, hackney, jsx, rester ],
     [ application:start( App ) || App <- Apps ].
 
 # Endpoints
