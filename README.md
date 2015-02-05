@@ -32,34 +32,34 @@ Certain APIs require certain headers to be sent with every request, this could b
 
 ## DELETE
 
-    gen_server:call( Name, { delete, Path } )
-    gen_server:call( Name, { delete, Path, Headers, Options } )
+    { ok, StatusCode, ResponseHeaders } = gen_server:call( Name, { delete, Path } )
+    { ok, StatusCode, ResponseHeaders } = gen_server:call( Name, { delete, Path, Headers, Options } )
 
 ## GET
 
-    gen_server:call( Name, { get, Path } )
-    gen_server:call( Name, { get, Path, QSOptions } )
-    gen_server:call( Name, { get, Path, QSOptions, Headers, Options } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { get, Path } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { get, Path, QSOptions } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { get, Path, QSOptions, Headers, Options } )
 
 ## HEAD
 
-    gen_server:call( Name, { head, Path } )
-    gen_server:call( Name, { head, Path, Headers, Options } )
+    { ok, StatusCode, ResponseHeaders } = gen_server:call( Name, { head, Path } )
+    { ok, StatusCode, ResponseHeaders } = gen_server:call( Name, { head, Path, Headers, Options } )
 
 ## PATCH
 
-    gen_server:call( Name, { patch, Path, Data } )
-    gen_server:call( Name, { patch, Path, Data, Headers, Options } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { patch, Path, Data } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { patch, Path, Data, Headers, Options } )
 
 ## POST
 
-    gen_server:call( Name, { post, Path, Data } )
-    gen_server:call( Name, { post, Path, Data, Headers, Options } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { post, Path, Data } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { post, Path, Data, Headers, Options } )
 
 ## PUT
 
-    gen_server:call( Name, { put, Path, Data } )
-    gen_server:call( Name, { put, Path, Data, Headers, Options } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { put, Path, Data } )
+    { ok, StatusCode, Body, ResponseHeaders } = gen_server:call( Name, { put, Path, Data, Headers, Options } )
 
 # Running tests
 
