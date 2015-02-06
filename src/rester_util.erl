@@ -34,5 +34,5 @@ is_json_response( RespHeaders ) ->
   LRespHeaders = rester_util:normalise_headers( RespHeaders ),
   case proplists:get_value( <<"content-type">>, LRespHeaders, <<"application/x-undefined">> ) of
     <<"application/json", _/binary>> -> true;
-    AnyOther                         -> false
+    _                                -> false
   end.
