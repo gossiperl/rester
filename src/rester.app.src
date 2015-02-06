@@ -1,6 +1,6 @@
 {application, rester,
   [{description, "REST library"},
-  {vsn, "0.0.1"},
+  {vsn, "0.1.1"},
   {modules, [ rester_app,
               rester_sup,
               rester_endpoint,

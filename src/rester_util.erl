@@ -2,7 +2,8 @@
 
 -export([
   normalise_headers/1,
-  normalise_headers/2 ]).
+  normalise_headers/2,
+  is_json_response/1 ]).
 
 -export_type([header/0]).
 
@@ -25,3 +26,13 @@ normalise_headers( [ { HeaderName, HeaderValue } | T ], Acc ) when is_binary( He
 
 normalise_headers( [], Acc ) when is_list( Acc ) ->
   Acc.
+
+
+%% @doc Get response content-type, if exists.
+-spec is_json_response( [ header() ] ) -> binary().
+is_json_response( RespHeaders ) ->
+  LRespHeaders = rester_util:normalise_headers( RespHeaders ),
+  case proplists:get_value( <<"content-type">>, LRespHeaders, <<"application/x-undefined">> ) of
+    <<"application/json", _/binary>> -> true;
+    AnyOther                         -> false
+  end.

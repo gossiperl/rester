@@ -176,10 +176,10 @@ response_call( Method, Path, QSOptions, Data, Headers, Options, #config{ protoco
   case trunc(StatusCode/100) of
     2 ->
       { ok, Body } = hackney:body(Ref),
-      case response_content_type( RespHeaders ) of
-        <<"application/json">> ->
+      case rester_util:is_json_response( RespHeaders ) of
+        true ->
           { ok, StatusCode, get_json_response( Body ), RespHeaders };
-        _ ->
+        false ->
           { ok, StatusCode, Body, RespHeaders }
       end;
     _ ->
@@ -235,12 +235,6 @@ get_qs_join( Any ) when is_binary(Any) -> <<"&">>.
 -spec get_protocol( rester_sup:http_protocol() ) -> binary().
 get_protocol( http ) -> <<"http">>;
 get_protocol( https ) -> <<"https">>.
-
-%% @doc Get response content-type, if exists.
--spec response_content_type( [ rester_util:header() ] ) -> binary().
-response_content_type( RespHeaders ) ->
-  LRespHeaders = rester_util:normalise_headers( RespHeaders ),
-  proplists:get_value( <<"content-type">>, LRespHeaders, <<"application/x-undefined">> ).
 
 %% @doc Parse binary reponse to term.
 -spec get_json_response(binary()) -> term().

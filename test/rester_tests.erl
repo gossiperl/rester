@@ -9,6 +9,7 @@
 
 rester_test_() ->
   {setup, fun start/0, fun stop/1, [
+    fun json_response_test/0,
     fun util_test/0,
     fun configuration_test/0,
     fun test_delete_plain/0,
@@ -27,6 +28,11 @@ start() ->
 
 stop(_State) ->
   noreply.
+
+json_response_test() ->
+  ?assertEqual( true, rester_util:is_json_response( [ { <<"content-type">>, <<"application/json">> } ] ) ),
+  ?assertEqual( true, rester_util:is_json_response( [ { <<"content-type">>, <<"application/json; charset=utf8">> } ] ) ),
+  ?assertEqual( false, rester_util:is_json_response( [ { <<"content-type">>, <<"text/plain">> } ] ) ).
 
 util_test() ->
   MixedCaseHeaderName = <<"X-Mixed-Case">>,
